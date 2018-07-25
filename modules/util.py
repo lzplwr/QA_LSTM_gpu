@@ -19,10 +19,15 @@ dir_path = os.path.dirname(os.path.dirname(code_path))
 def read_table(file_name):
     file_path = os.path.join(dir_path, 'data', file_name)
     data = xlrd.open_workbook(file_path)
-    table = data.sheets()[0]
-    questions = table.col_values(0)
-    answers = table.col_values(1)
-    data_pairs = [ (questions[i],answers[i]) for i in range(len(questions)) ]
+    table_hi = data.sheets()[0]
+    table_revise = data.sheet_()[1]
+    questions_hi = table_hi.col_values(0)
+    answers_hi = table_hi.col_values(1)
+    questions_revise = table_revise.col_values(0)
+    answers_revise = table_revise.col_values(1)
+    data_pairs_hi = [(questions_hi[i], answers_hi[i]) for i in range(len(questions_hi))]
+    data_pairs_revise = [ (questions_revise[i],answers_revise[i]) for i in range(len(questions_revise)) ]
+    data_pairs = data_pairs_hi + data_pairs_revise
     data_pairs = [ (str(q).strip(),str(a).strip()) for (q,a) in data_pairs if q and a ]
     return data_pairs
 
