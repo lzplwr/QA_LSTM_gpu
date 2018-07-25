@@ -13,7 +13,7 @@ import modules.util as util
 class Chatter():
     
     def __init__(self):
-        self.qa_pairs = util.read_table('corpus_hi.xlsx')
+        self.qa_pairs = util.read_hi_table('corpus_hi.xlsx')
     
     def search_answer(self, question):
         # 我们返回问候语料中最相似问句的答案。这里我们设置了一个阈值，当低于这个阈值时，就不返回答案
